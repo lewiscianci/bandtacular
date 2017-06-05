@@ -1,10 +1,156 @@
-﻿@{
+﻿@model Bandtastic.ViewModels.Index
+
+@{
     ViewBag.Title = "Bandtastic";
 }
 
 
 <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<!--   Icon Section   -->
+<div class="row">
+    <form class="col s12">
+        <div class="row">
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+            <div class="col s12">
+                <div class="input-field col s12">
+                    <select id="type">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                        <option value="3">Type 3</option>
+                        <option value="4">Type 4</option>
+                        <option value="5">Type 5</option>
+                    </select>
+                    <label>Type</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="totalvalue" type="text" class="validate">
+                    <label for="totalvalue">Total Cumulative Value</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field col s12">
+                    <select id="risk">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                    <label>Risk</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field col s12">
+                    <select id="recurrency">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Recurrent</option>
+                        <option value="2">Non-recurrent</option>
+                    </select>
+                    <label>Expenditure Type</label>
+                </div>
+            </div>
+
+        </div>
+        <div id="procurementNeeded" style="display:none">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card blue darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title" id="procurementLevel"></span>
+                            <p id="procurementLevelExplanation"></p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select').material_select();
+
+            $("input").on('blur',
+                function () {
+                    getAppropriateProcurement();
+                });
+
+            $("select").on('change',
+                function () {
+                    getAppropriateProcurement();
+                });
+
+            function getAppropriateProcurement() {
+                if ($("#type").val() !== null &&
+                    $("#risk").val() !== null &&
+                    $("#totalvalue").val() !== null &&
+                    $("#recurrency") !== null) {
+                    $("#procurementLevel").text("Potato");
+                    console.log($("#type").val());
+                    $("#procurementLevelExplanation").text("blam blam blam");
+                    $("#procurementNeeded").show();
+                }
+            }
+
+        });
+    </script>
+}
+
+@*<div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+                    <label for="disabled">Disabled</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    This is an inline input field:
+                    <div class="input-field inline">
+                        <input id="email" type="email" class="validate">
+                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>*@

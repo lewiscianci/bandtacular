@@ -26,7 +26,7 @@ namespace Bandtastic
 
         public virtual DbSet<FinancialBand> FinancialBands { get; set; }
         public virtual DbSet<ProcurementBand> ProcurementBands { get; set; }
-
+        public virtual DbSet<ProcurementType> ProcurementTypes { get; set; }
     }
 
     //public class MyEntity

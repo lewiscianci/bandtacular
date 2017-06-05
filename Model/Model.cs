@@ -7,23 +7,34 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Band
+
+    public class FinancialBand
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
         public string Name { get; set; }
-        public int MaxDelegation { get; set; }
-
+        public int ProcurementTypeID { get; set; }
+        public List<ProcurementType> ProcurementType { get; set; }
+        public bool Recurrent { get; set; }
     }
 
-    public class FinancialBand : Band
+    public class ProcurementBand
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        public string Name { get; set; }
+        public int ProcurementTypeID { get; set; }
+        public List<ProcurementType> ProcurementType { get; set; }
     }
 
-    public class ProcurementBand : Band
+    public class ProcurementType
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        public string Name { get; set; }
+        public int? MaxDelegation { get; set; }
+        public int ProcurementBandID { get; set; }
+        public ProcurementBand ProcurementBand { get; set; }
     }
 
 }
