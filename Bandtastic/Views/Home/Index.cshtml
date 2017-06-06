@@ -21,7 +21,7 @@
                         <option value="4">Type 4</option>
                         <option value="5">Type 5</option>
                     </select>
-                    <label>Type</label>
+                    <label>Procurement Type Required</label>
                 </div>
             </div>
 
@@ -79,13 +79,18 @@
                         <div class="card-content white-text">
                             <span class="card-title" id="procurementLevel"></span>
                             <p id="procurementLevelExplanation"></p>
-                            <p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>
+                            @*<p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>*@
                         </div>
 
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="col s12">
+                    <div class="card-panel pink lighten-1" id="briefingnoterequired" style="display:none">
+                        <span class="white-text">This procurement <b>requires</b> a <b>briefing note</b>.
+                        </span>
+                    </div>
                 <div class="col s12">
                     <div class="card">
                         <div class="card-content">
