@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col s12">
                 <div class="input-field col s12">
-                    <input placeholder="Placeholder" id="totalvalue" type="text" class="validate">
+                    <input placeholder="Total" type="number" id="totalvalue" type="text" class="validate">
                     <label for="totalvalue">Total Cumulative Value</label>
                 </div>
             </div>
@@ -53,8 +53,8 @@
                 <div class="input-field col s12">
                     <select id="recurrency">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Recurrent</option>
-                        <option value="2">Non-recurrent</option>
+                        <option value="recurrent">Recurrent</option>
+                        <option value="nonrecurrent">Non-recurrent</option>
                     </select>
                     <label>Expenditure Type</label>
                 </div>
@@ -63,16 +63,25 @@
         </div>
         <div id="procurementNeeded" style="display:none">
             <div class="row">
+
+                <div class="col s12 m6">
+                    <div class="card black">
+                        <div class="card-content white-text">
+                            <span class="card-title" id="financialLevel"></span>
+                            <p id="financialLevelExplanation"></p>
+                            @*<p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>*@
+                        </div>
+
+                    </div>
+                </div>
                 <div class="col s12 m6">
                     <div class="card blue darken-1">
                         <div class="card-content white-text">
                             <span class="card-title" id="procurementLevel"></span>
                             <p id="procurementLevelExplanation"></p>
+                            <p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>
                         </div>
-                        <div class="card-action">
-                            <a href="#">This is a link</a>
-                            <a href="#">This is a link</a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -100,11 +109,211 @@
             function getAppropriateProcurement() {
                 if ($("#type").val() !== null &&
                     $("#risk").val() !== null &&
-                    $("#totalvalue").val() !== null &&
-                    $("#recurrency") !== null) {
-                    $("#procurementLevel").text("Potato");
+                    $("#totalvalue").val() !== "" &&
+                    $("#recurrency").val() !== null) {
+
+                    var procurementBandNeeded;
+                    var financialBandNeeded;
+                    var financialOverLimit = false;
+                    var procurementAmount = Number(($("#totalvalue").val()));
+                    var briefingNoteRequired = false;
+                    var procurementType = Number($("#type").val());
+                    var isRecurrent = $("#recurrency").val() === "recurrent"; // false if not recurrent
                     console.log($("#type").val());
-                    $("#procurementLevelExplanation").text("blam blam blam");
+
+                    if (procurementAmount > 100000) { // need briefing note for expenses more than $100,000
+                        briefingNoteRequired = true;
+                    }
+
+                    if (procurementType !== 3 && procurementType !== 4) {
+                        // procurmenet less than 10 million
+                        // is not type 3 or 4
+
+                        switch (true) {
+                            // these are the broad rules
+                            // for type 1,2, and 5 bands 4 through 8 share delegation limits.
+                            case (procurementAmount <= 10000):
+                                {
+                                    procurementBandNeeded = 8;
+                                    break;
+                                }
+                            case (procurementAmount <= 100000):
+                                {
+                                    procurementBandNeeded = 7;
+                                    break;
+
+                                }
+                            case (procurementAmount <= 250000):
+                                {
+                                    procurementBandNeeded = 6;
+                                    break;
+
+                                }
+                            case (procurementAmount <= 500000):
+                                {
+                                    procurementBandNeeded = 5;
+                                    break;
+
+                                }
+                            case (procurementAmount <= 1000000):
+                                {
+                                    procurementBandNeeded = 4;
+                                    break;
+                                }
+                            case (procurementAmount <= 10000000):
+                                {
+                                    procurementBandNeeded = 3;
+                                    break;
+                                }
+                            case (procurementAmount > 10000000):
+                                {
+                                    procurementBandNeeded = 2;
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    procurementBandNeeded = 2; // no match
+
+                                }
+                        }
+
+
+                        // special cases for higher bands
+
+
+                    } else if (procurementType === 3) {
+                        if (procurementAmount < 10000000) {
+                            procurementBandNeeded = 3;
+                        } else {
+                            procurementBandNeeded = 2;
+                        }
+                    } else if (procurementType === 4) {
+                        briefingNoteRequired = true;
+                        if (procurementAmount < 150000) {
+                            procurementBandNeeded = 3;
+                        } else if (procurementAmount < 250000) {
+                            procurementBandNeeded = 2;
+                        } else {
+                            procurementBandNeeded = 1;
+                        }
+                    }
+
+                    // procurement band logic finished
+                    // financial band logic
+
+                    if (isRecurrent
+                    ) { // there are too many differences between recurrent/nonrecurrent, they become dissimilar after band 8 :S
+                        switch (true) {
+                            case (procurementAmount <= 10000):
+                                {
+                                    financialBandNeeded = 8;
+                                    break;
+
+                                }
+                            case (procurementAmount <= 100000):
+                                {
+                                    financialBandNeeded = 7;
+                                    break;
+                                }
+                            case (procurementAmount <= 250000):
+                                {
+                                    financialBandNeeded = 6;
+                                    break;
+                                }
+                            case (procurementAmount <= 500000):
+                                {
+                                    financialBandNeeded = 5;
+                                    break;
+                                }
+                            case (procurementAmount <= 1000000):
+                                {
+                                    financialBandNeeded = 4;
+                                    break;
+                                }
+                            case (procurementAmount <= 10000000):
+                                {
+                                    financialBandNeeded = 3;
+                                    break;
+                                }
+                            case (procurementAmount > 10000000):
+                                {
+                                    financialBandNeeded = 2;
+                                    break;
+                                }
+
+
+                        }
+                    } else {
+                        // nonrecurrent
+                        switch (true) {
+                            case (procurementAmount <= 10000): // same as recurrent
+                                {
+                                    financialBandNeeded = 8;
+                                    break;
+
+                                }
+                            case (procurementAmount <= 50000):
+                                {
+                                    financialBandNeeded = 7;
+                                    break;
+                                }
+                            case (procurementAmount <= 100000):
+                                {
+                                    financialBandNeeded = 6;
+                                    break;
+                                }
+                            case (procurementAmount <= 250000):
+                                {
+                                    financialBandNeeded = 5;
+                                    break;
+                                }
+                            case (procurementAmount <= 500000):
+                                {
+                                    financialBandNeeded = 4;
+                                    break;
+                                }
+                            case (procurementAmount <= 1000000):
+                                {
+                                    financialBandNeeded = 3;
+                                    break;
+                                }
+                            case (procurementAmount <= 5000000): // band 2 and 1 have the same nonrecurrent limits
+                                {
+                                    financialBandNeeded = 2;
+                                    break;
+                                }
+                            case (procurementAmount > 5000000):
+                                {
+                                    financialOverLimit = true;
+                                }
+                        }
+                    }
+
+
+                    $("#procurementLevel").text("Band " + procurementBandNeeded);
+                    //console.log($("#type").val());
+                    $("#procurementLevelExplanation").text("You require Band " +
+                        procurementBandNeeded +
+                        " procurement delegation");
+                    if (!financialOverLimit) {
+
+                        $("#financialLevel").text("Band " + financialBandNeeded);
+                        $("#financialLevelExplanation")
+                            .text("You require Band " + financialBandNeeded + " financial delgation");
+
+
+                    } else {
+                        $("#financialLevel").text("No band can approve this much for this type");
+                        $("#financialLevelExplanation")
+                            .text("Could you use a coupon, or something?");
+                    }
+                    if (briefingNoteRequired) {
+                        $("#briefingnoterequired").show();
+                    } else {
+                        $("#briefingnoterequired").hide();
+                    }
+
                     $("#procurementNeeded").show();
                 }
             }
@@ -154,3 +363,4 @@
             </div>
         </form>
     </div>*@
+
