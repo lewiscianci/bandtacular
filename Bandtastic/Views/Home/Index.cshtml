@@ -24,7 +24,100 @@
                     <label>Procurement Type Required</label>
                 </div>
             </div>
+            <div class="col s12 info" id="type1description" data-type="1" style="display:none">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Type 1 - Procurement/purchase from competitive process</span>
+                        <div class="row center-align valign-wrapper">
+                            <div class="col s4">
+                                <i class="fa fa-users fa-5x"></i>
+                            </div>
+                            <div class="col s8">
+                                <p>Type 1 delegates have the authority to approve a procurement/purchase from competitive tenders, offers or quotes, including quotes from a register of pre-qualified supplier/s.</p>
+                            </div>
+                        </div>
 
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 info" id="type2description" data-type="2" style="display:none">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Type 2 - Purchase from an established Standing Offer Arrangement</span>
+                        <div class="row center-align valign-wrapper">
+                            <div class="col s4">
+                                <i class="fa fa-book fa-5x"></i>
+                            </div>
+                            <div class="col s8">
+                                <p>Type 2 delegates have the authority to approve a purchase from existing Standing offer arrangement/s (single supplier or panel).</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 info" id="type3description" data-type="3" style="display:none">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Type 3 - Establishment of a Supply Arrangement</span>
+                        <div class="row center-align valign-wrapper">
+                            <div class="col s4">
+                                <i class="fa fa-handshake-o fa-5x"></i>
+                            </div>
+                            <div class="col s8">
+                                <p>Type 3 delegates have the authority to approve, following a competitive process, the establishment of a Standing offer arrangement or register of pre-qualified supplier/s.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 info" id="type4description" data-type="4" style="display:none">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Type 4 - Confined market</span>
+                        <div class="row center-align valign-wrapper">
+                            <div class="col s4">
+                                <i class="fa fa-diamond fa-5x"></i>
+                            </div>
+                            <div class="col s8">
+                                <p>
+                                    Type 4 delegates have the authority to confine quotes/offers where there is a sole or limited source of supply or genuinely urgent situation. <b>Type 4 procurements always require a briefing note.</b>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 info" id="type5description" data-type="5" style="display:none">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Type 5 - Contracting</span>
+                        <div class="row center-align valign-wrapper">
+                            <div class="col s4">
+                                <i class="fa fa-pencil-square-o fa-5x"></i>
+                            </div>
+                            <div class="col s8">
+                                <p>
+                                    Type 5 delegates have the authority to bind the State to a procurement outcome or purchase by entering into a contract, including:<br />
+                                    <br />
+                                    • issuing purchase order/s <br />
+                                    • issuing of a letter of acceptance to a successful supplier<br />
+                                    • signing a contract.<br />
+
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col s12">
@@ -233,6 +326,14 @@
             $("input").on('blur',
                 function () {
                     getAppropriateProcurement();
+                });
+
+            $("#type").on('change',
+                function () {
+                    $("div[id*='description']").slideUp();
+                    $("#type" + $(this).val() + "description").slideDown();
+                    console.log("#type" + $(this).data("description"));
+                    console.log($(this));
                 });
 
             $("select").on('change',
@@ -492,7 +593,7 @@
                         "%0D%0A%0D%0A If you have any questions please let me know.";
 
 
-                    $("#generateEmailButton").attr("href", "mailto:?Subject=potato&body=" + emailBody);
+                    $("#generateEmailButton").attr("href", "mailto:?Subject=Procurement%20Approval%20Requested&body=" + emailBody);
 
                     $("#procurementNeeded").show();
                 }
