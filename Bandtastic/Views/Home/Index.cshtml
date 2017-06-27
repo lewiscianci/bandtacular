@@ -29,7 +29,9 @@
         <div class="row">
             <div class="col s12">
                 <div class="input-field col s12">
+                    <span style="position: absolute; top: 20%; left:-10px">$</span>
                     <input placeholder="Total" type="number" id="totalvalue" type="text" class="validate">
+
                     <label for="totalvalue">Total Cumulative Value</label>
                 </div>
             </div>
@@ -88,27 +90,136 @@
             <div class="row">
                 <div class="col s12">
                     <div class="card-panel pink lighten-1" id="briefingnoterequired" style="display:none">
-                        <span class="white-text">This procurement <b>requires</b> a <b>briefing note</b>.
+                        <span class="white-text">
+                            This procurement <b>requires</b> a <b>briefing note</b>.
                         </span>
                     </div>
-                <div class="col s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">What's next?</span>
-                            <p id="whatsnext"></p>
-                            In order to progress this procurement, the following needs to occur:
-                            <ol>
-                                <li>The <b>author</b> needs to email the description of the Purchase Order</li>
-                                <li>The <b>Financial Delegate</b> needs to <b>review and approve</b> the purchase</li>
-                                <li>The <b>Procurement Delegate</b> needs to <b>review and approve</b> the purchase</li>
-                                <li>The <b>Asset Accounting Team</b> need to release the Purchase Order</li>
-                            </ol>
-                            @*<p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>*@
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">What's next?</span>
+                                <div id="whatsnext1" style="display:none">
+                                    <p>
+                                        Email the Delegates and Purchase Requisition officer.  This email should include:
+                                        <ol>
+                                            <li>detail what is being bought and why</li>
+                                            <li>nominate the successful provider (as determined from the evaluation process)</li>
+                                            <li>state the value (inc GST) of the entire engagement (inclusive of any option periods)</li>
+                                            <li>
+                                                indicate the term of the engagement and any available option periods
+                                                <ul style="padding-left:10px">
+                                                    <li>including the saving and benefits of the proposed engagement</li>
+                                                    <li>include how value for money is best secured/assessed (ie. why this is the appropriate course of action) and how this aligns to your proposed procurement strategy)</li>
+
+                                                </ul>
+                                            </li>
+                                            <li>confirm the funding availability (non-recurrent or recurrent) from the financial delegate</li>
+                                            <li>state who will be responsible for managing the agreement and supplier performance</li>
+                                            <li>include the statement “A Service agreement will be developed after this approval is granted”</li>
+
+                                        </ol>
+
+                                        The <b>attachments</b> in this email should include the following items:
+                                        <ul>
+                                            <li>the prior approval to proceed with this procurement process</li>
+                                            <li>the approved evaluation report summarising the selection process (where more than one provider was considered in a confined process).</li>
+                                        </ul>
+
+                                    </p>
+                                </div>
+                                <div id="whatsnext2" style="display:none">
+                                    <p>
+                                        Email the Delegates and Purchase Requisition officer.  This email should include:
+                                        <ol>
+                                            <li>detail what is being bought and why</li>
+                                            <li>nominate the successful provider</li>
+                                            <li>state the value (inc GST) of the entire engagement (inclusive of any option periods)</li>
+                                            <li>
+                                                indicate the term of the engagement and any available option periods
+                                                <ul style="padding-left: 10px">
+                                                    include how value for money is best secured/assessed (ie. why this is the appropriate course of action) and how this aligns to your proposed procurement strategy)
+                                                </ul>
+                                            </li>
+                                            <li>confirm the funding availability (non-recurrent or recurrent) from the financial delegate </li>
+                                            <li>state who will be responsible for managing the agreement and provider performance.</li>
+                                        </ol>
+
+                                        The <b>attachments</b> in this email should include the following items:
+                                        <ul>
+                                            <li>the prior approval to proceed with this procurement process</li>
+                                        </ul>
+
+
+                                    </p>
+                                </div>
+                                <div id="whatsnext3" style="display: none">
+                                    <p>
+                                        In order to progress this procurement, the following needs to occur:
+                                        <ol>
+                                            <li>The <b>author</b> needs to email the description of the Purchase Order</li>
+                                            <li>The <b>Financial Delegate</b> needs to <b>review and approve</b> the purchase</li>
+                                            <li>The <b>Procurement Delegate</b> needs to <b>review and approve</b> the purchase</li>
+                                            <li>The <b>Asset Accounting Team</b> need to release the Purchase Order</li>
+                                        </ol>
+                                    </p>
+                                </div>
+                                <div id="whatsnext4" style="display: none">
+                                    <p>
+                                        Email the Delegates and Purchase Requisition officer. This email should include: <br />
+                                        a) the purpose of the engagement and the specific services to be performed<br />
+                                        b) the business name of the proposed provider<br />
+                                        c) in a sole supply situation:<br />
+                                        • the market research undertaken to substantiate the claim of sole supply<br />
+                                        d) in a confined market situation:<br />
+                                        • the reasons and basis upon which the market was confined to the limited number of nominated providers<br />
+                                        e) in a situation of genuine urgency:<br />
+                                        • a description of the genuine urgency<br />
+                                        • the implications if the goods/services are not purchased urgently<br />
+                                        • the reasons for selecting a particular provider, where there is more than one suitable provider/supplier<br />
+                                        f) any alternative solutions to this proposal<br />
+                                        g) probity and integrity implications and the public perception of an engagement outside of an open competitive tender process<br />
+                                        h) how value for money is best secured/assessed (ie. why this is the appropriate course of action) and how this aligns to your proposed procurement strategy)<br />
+                                        i) the duration of the proposed engagement (including any extension options)<br />
+                                        j) the total cost of the engagement:<br />
+                                        • the funding source, funding approval and project commencement approval from an appropriate financial delegate<br />
+                                        k) include the statement, “A Service agreement will be developed after this approval is granted”.<br />
+                                        Attachments will include:<br />
+                                        • the prior approval to proceed/sourcing strategy with this procurement process (where relevant)<br />
+                                        • the evaluation report approved by the evaluation panel summarising the selection process (if more than one provider was considered e.g. a confined process)<br />
+                                        • any financial approvals where this is a separate brief.<br />
+
+                                    </p>
+                                </div>
+                                <div id="whatsnext5" style="display: none">
+                                    <p>
+                                        In order to progress this procurement, the following needs to occur:
+                                        <ol>
+                                            <li>The <b>author</b> needs to email the description of the Purchase Order</li>
+                                            <li>The <b>Financial Delegate</b> needs to <b>review and approve</b> the purchase</li>
+                                            <li>The <b>Procurement Delegate</b> needs to <b>review and approve</b> the purchase</li>
+                                            <li>The <b>Asset Accounting Team</b> need to release the Purchase Order</li>
+                                        </ol>
+                                    </p>
+                                </div>
+
+                                @*<p id="briefingnoterequired" style="display:none"><b>You also need to fill out a briefing note</b></p>*@
+                                <div class="card-action">
+                                    <a href="#" id="generateEmailButton">generate email for approval</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @*<div class="row">
+                <div class="col s12 center-align">
+                    <img src="~/Media/qhealth.png"/>
+                </div>
+            </div>*@
+
+
+
     </form>
 </div>
 
@@ -332,14 +443,63 @@
                             .text("Could you use a coupon, or something?");
                     }
                     if (briefingNoteRequired) {
+
+
                         $("#briefingnoterequired").show();
                     } else {
                         $("#briefingnoterequired").hide();
                     }
 
+                    $("div[id*='whatsnext']").hide();
+                    // violates dry, write a function
+                    switch (true) {
+                        case (procurementType === 1):
+                            {
+                                $("#whatsnext1").show();
+                                break;
+                            }
+                        case (procurementType === 2):
+                            {
+                                $("#whatsnext2").show();
+                                break;
+                            }
+                        case (procurementType === 3):
+                            {
+                                $("#whatsnext3").show();
+                                break;
+                            }
+                        case (procurementType === 4):
+                            {
+                                $("#whatsnext4").show();
+                                break;
+                            }
+                        case (procurementType === 5):
+                            {
+                                $("#whatsnext5").show();
+                                break;
+                            }
+
+                    }
+
+                    var emailBody = "Hello, %0D%0A%0D%0A Please approve the below procurement:%0D%0A Procurement Type: " +
+                        $("#type option:selected").text() +
+                        "%0D%0A Total Cumulative Value: " +
+                        procurementAmount +
+                        "%0D%0A Risk: " +
+                        $("#risk option:selected").text() +
+                        "%0D%0A Expenditure Type: " +
+                        $("#recurrency option:selected").text() +
+                        "%0D%0A%0D%0A If you have any questions please let me know.";
+
+
+                    $("#generateEmailButton").attr("href", "mailto:?Subject=potato&body=" + emailBody);
+
                     $("#procurementNeeded").show();
                 }
             }
+
+            // this javascript is dedicated to my beautiful wife, Sarah Cianci, who spent so many of her hours
+            // sitting in the couch next to me just so I could succeed at making a decent application :)
 
         });
     </script>

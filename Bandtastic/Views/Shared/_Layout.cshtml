@@ -6,27 +6,50 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="~/Content/Site.css" />
 </head>
 <body>
     <nav class="green darken-1" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo">Bandtastic</a>
-          
+
         </div>
     </nav>
-<div class="container">
-    <br/>
-    <br/>
-    @RenderBody()
-</div>
+    <main>
+        <div class="container">
+            <br />
+            <br />
+            @RenderBody()
+        </div>
+
+    </main>
+    <footer class="page-footer green lighten-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <img src="~/Media/qhealth.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container center-align">
+                © 2017 eHealth Queensland
+            </div>
+        </div>
+    </footer>
 
 
 
     @Scripts.Render("~/bundles/jquery")
-   
+
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+          
 </body>
 </html>
